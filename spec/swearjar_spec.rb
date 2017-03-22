@@ -88,4 +88,10 @@ describe Swearjar do
   it "doesn't substitute simple words when they occur later as substrings" do
     expect(Swearjar.default.censor("anus janus")).to eq("**** janus")
   end
+
+  it "adds custom emoji filter and censors emoji" do
+    sj = Swearjar.default
+    sj.add_filter("emoji")
+    expect(sj.censor("🚀")).to eq("*")
+  end
 end

@@ -15,6 +15,13 @@ class Swearjar
     load_file(file) if file
   end
 
+  def add_filter(filter)
+    return unless filter
+    if filter == "emoji"
+      @regexs[Regexp.new(EMOJI_REGEX)] = ["inappropriate"]
+    end
+  end
+
   def profane?(string)
     string = string.to_s
     scan(string) {|test| return true if test }
